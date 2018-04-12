@@ -42,7 +42,7 @@
         tileLayer.minZoom = 0;
         tileLayer.maxZoom = 20;
 //        3、设定BMKURLTileLayer的可渲染区域。
-        tileLayer.visibleMapRect = BMKMapRectMake(32994258, 35853667, 3122, 5541);
+//        tileLayer.visibleMapRect = BMKMapRectMake(32994258, 35853667, 3122, 5541);
 //        4、将BMKURLTileLayer对象添加到BMKMapView中
         [tileOverlays addObject:tileLayer];
     }];
