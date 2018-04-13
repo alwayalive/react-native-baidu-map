@@ -13,7 +13,8 @@
     BMKMapView* _mapView;
     BMKPointAnnotation* _annotation;
     NSMutableArray* _annotations;
-    NSMutableArray* _urlTiles;
+    //    NSMutableArray* _urlTiles;
+    NSMutableArray *_tileOverlays;
 }
 
 -(void)setIconType:(int)iconType {
@@ -32,20 +33,23 @@
 }
 
 -(void)setUrlTiles:(NSArray *)urlTiles{
-    _urlTiles = [[NSMutableArray alloc] init];
     NSMutableArray *tileOverlays = [NSMutableArray array];
     [urlTiles enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-//        1、根据URL模版（即指向相关图层图片的URL）创建BMKURLTileLayer对象。
+        //        1、根据URL模版（即指向相关图层图片的URL）创建BMKURLTileLayer对象。
         BMKURLTileLayer *tileLayer = [[BMKURLTileLayer alloc] initWithURLTemplate:obj];
-//        tileLayer.URLTemplate = obj;
-//        2、设置BMKURLTileLayer的可见最大/最小Zoom值。
+        //        tileLayer.URLTemplate = obj;
+        //        2、设置BMKURLTileLayer的可见最大/最小Zoom值。
         tileLayer.minZoom = 0;
         tileLayer.maxZoom = 20;
-//        3、设定BMKURLTileLayer的可渲染区域。
-//        tileLayer.visibleMapRect = BMKMapRectMake(32994258, 35853667, 3122, 5541);
-//        4、将BMKURLTileLayer对象添加到BMKMapView中
+        //        3、设定BMKURLTileLayer的可渲染区域。
+        //        tileLayer.visibleMapRect = BMKMapRectMake(32994258, 35853667, 3122, 5541);
+        //        4、将BMKURLTileLayer对象添加到BMKMapView中
         [tileOverlays addObject:tileLayer];
     }];
+    if( [urlTiles count] == 0 && [_tileOverlays count] > 0 ){
+        [self removeOverlays:_tileOverlays];
+    }
+    _tileOverlays = tileOverlays;
     [self addOverlays:[NSArray arrayWithArray:tileOverlays]];
     
 }
@@ -71,20 +75,20 @@
 
 -(void)setMarkers:(NSArray *)markers {
     int markersCount = [markers count];
-//    if(_annotations == nil) {
-        _annotations = [[NSMutableArray alloc] init];
-//    }
+    //    if(_annotations == nil) {
+    _annotations = [[NSMutableArray alloc] init];
+    //    }
     
     //删除旧点
-//    int oldCount = [_annotations count];
-//    if(oldCount >0 ){
-//        int start = oldCount -1;
-//        for (int i = start; i >= oldCount; i--) {
-//            BMKPointAnnotation *annotation = [_annotations objectAtIndex:i];
-//            [self removeAnnotation:annotation];
-//            [_annotations removeObject:annotation];
-//        }
-//    }
+    //    int oldCount = [_annotations count];
+    //    if(oldCount >0 ){
+    //        int start = oldCount -1;
+    //        for (int i = start; i >= oldCount; i--) {
+    //            BMKPointAnnotation *annotation = [_annotations objectAtIndex:i];
+    //            [self removeAnnotation:annotation];
+    //            [_annotations removeObject:annotation];
+    //        }
+    //    }
     
     if(markers != nil) {
         for (int i = 0; i < markersCount; i++)  {
@@ -136,7 +140,7 @@
 
 -(void)addMarker:(BMKPointAnnotation *)annotation option:(NSDictionary *)option {
     [self updateMarker:annotation option:option];
-//    [self addAnnotation:annotation];
+    //    [self addAnnotation:annotation];
 }
 
 -(void)updateMarker:(BMKPointAnnotation *)annotation option:(NSDictionary *)option {
@@ -162,3 +166,4 @@
 
 
 @end
+
