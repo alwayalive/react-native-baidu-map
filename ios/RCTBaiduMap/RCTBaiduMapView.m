@@ -14,7 +14,7 @@
     BMKPointAnnotation* _annotation;
     NSMutableArray* _annotations;
     //    NSMutableArray* _urlTiles;
-    NSMutableArray *_tileOverlays;
+    //    NSMutableArray *_tileOverlays;
 }
 
 -(void)setIconType:(int)iconType {
@@ -33,8 +33,23 @@
 }
 
 -(void)setUrlTiles:(NSArray *)urlTiles{
-    NSMutableArray *tileOverlays = [NSMutableArray array];
+    //    NSMutableArray *tileOverlays = [NSMutableArray array];
+    
+    if( [urlTiles count] == 0 && _tileOverlays != nil && [_tileOverlays count] > 0 ){
+        [self removeOverlays:_tileOverlays];
+        _tileOverlays = [NSMutableArray array];
+        _urls = [NSMutableArray array];
+    }
+    
+    if(_urls == nil){
+        _tileOverlays = [NSMutableArray array];
+        _urls = [NSMutableArray array];
+    }
+    
     [urlTiles enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if( [_urls containsObject:obj]){
+            return;
+        }
         //        1、根据URL模版（即指向相关图层图片的URL）创建BMKURLTileLayer对象。
         BMKURLTileLayer *tileLayer = [[BMKURLTileLayer alloc] initWithURLTemplate:obj];
         //        tileLayer.URLTemplate = obj;
@@ -44,13 +59,10 @@
         //        3、设定BMKURLTileLayer的可渲染区域。
         //        tileLayer.visibleMapRect = BMKMapRectMake(32994258, 35853667, 3122, 5541);
         //        4、将BMKURLTileLayer对象添加到BMKMapView中
-        [tileOverlays addObject:tileLayer];
+        [_urls addObject:obj];
+        [_tileOverlays addObject:tileLayer];
     }];
-    if( [urlTiles count] == 0 && [_tileOverlays count] > 0 ){
-        [self removeOverlays:_tileOverlays];
-    }
-    _tileOverlays = tileOverlays;
-    [self addOverlays:[NSArray arrayWithArray:tileOverlays]];
+    [self addOverlays:[NSArray arrayWithArray:_tileOverlays]];
     
 }
 //- (BMKOverlayView *)mapView:(BMKMapView *)mapView viewForOverlay:(id <BMKOverlay>)overlay {
@@ -61,7 +73,6 @@
 //    return nil;
 //}
 -(void)setMarker:(NSDictionary *)option {
-    NSLog(@"setMarker");
     if(option != nil) {
         if(_annotation == nil) {
             _annotation = [[BMKPointAnnotation alloc]init];
@@ -166,4 +177,3 @@
 
 
 @end
-

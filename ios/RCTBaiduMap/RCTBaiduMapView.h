@@ -23,6 +23,8 @@
 @interface RCTBaiduMapView : BMKMapView <BMKMapViewDelegate>
 
 @property (nonatomic, copy) RCTBubblingEventBlock onChange;
+@property NSMutableArray *tileOverlays;
+@property NSMutableArray *urls;
 
 -(void)setZoom:(float)zoom;
 -(void)setCenterLatLng:(NSDictionary *)LatLngObj;
@@ -35,3 +37,4 @@
 @end
 
 #endif
+
