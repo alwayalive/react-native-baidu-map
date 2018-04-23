@@ -19,7 +19,7 @@
           "directUrl": "https://raw.githubusercontent.com/alwayalive/react-native-baidu-map/master/package.json"
         }
       },
-      "/Users/linjunwen/work/company-svn/trunk/seatour"
+      "/Users/alwayalive/work/company-svn/trunk/seatour"
     ]
   ],
   "_from": "git+https://github.com/alwayalive/react-native-baidu-map.git",
@@ -52,7 +52,7 @@
   "_shasum": "a69029bdb20d493140c62eb142df5dd9039b2d0e",
   "_shrinkwrap": null,
   "_spec": "react-native-baidu-map@git+https://github.com/alwayalive/react-native-baidu-map.git",
-  "_where": "/Users/linjunwen/work/company-svn/trunk/seatour",
+  "_where": "/Users/alwayalive/work/company-svn/trunk/seatour",
   "bugs": {
     "url": "https://github.com/alwayalive/react-native-baidu-map/issues"
   },
@@ -69,8 +69,8 @@
   "main": "index.js",
   "maintainers": [
     {
-      "name": "linjw",
-      "email": "616988524@qq.com"
+      "name": "alwayalive",
+      "email": "alwayalive@163.com"
     }
   ],
   "name": "react-native-baidu-map",
