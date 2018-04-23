@@ -31,7 +31,7 @@
     @synchronized(_quadtree) {
         [_quadItems addObject:quadItem];
         [_quadtree addItem:quadItem];
-//        NSLog(@"%@", _quadtree.quadItems);
+        //        NSLog(@"%@", _quadtree.quadItems);
     }
 }
 
@@ -55,11 +55,11 @@
     }
     NSMutableArray *results = [NSMutableArray array];
     
-    NSUInteger zoom = (NSUInteger)zoomLevel;
-    CGFloat zoomSpecificSpan = MAX_DISTANCE_IN_DP / pow(2, zoom) / 256;
+//    NSUInteger zoom = (NSUInteger)zoomLevel;
+    //    CGFloat zoomSpecificSpan = MAX_DISTANCE_IN_DP / pow(2, zoom) / 256;
     NSMutableSet *visitedCandidates = [NSMutableSet set];
     NSMutableDictionary *distanceToCluster = [NSMutableDictionary dictionary];
-    NSMutableDictionary *itemToCluster = [NSMutableDictionary dictionary];
+    //    NSMutableDictionary *itemToCluster = [NSMutableDictionary dictionary];
     
     @synchronized(_quadtree) {
         for (BMKQuadItem *candidate in _quadItems) {
@@ -73,32 +73,32 @@
             cluster.accessibilityLabel = candidate.clusterItem.accessibilityLabel;
             cluster.itemId = candidate.clusterItem.accessibilityLabel;
             
-            CGRect searchRect = [self getRectWithPt:candidate.pt Span:zoomSpecificSpan];
-            NSMutableArray *items = (NSMutableArray*)[_quadtree searchInRect:searchRect];
-            if (items.count == 1) {
-                [cluster.clusterItems addObject:candidate.clusterItem];
-                [results addObject:cluster];
-                [visitedCandidates addObject:candidate];
-                [distanceToCluster setObject:[NSNumber numberWithDouble:0] forKey:[NSNumber numberWithLongLong:candidate.hash]];
-                continue;
-            }
-            
-            for (BMKQuadItem *quadItem in items) {
-                NSNumber *existDistache = [distanceToCluster objectForKey:[NSNumber numberWithLongLong:quadItem.hash]];
-                CGFloat distance = [self getDistanceSquared:candidate.pt point:quadItem.pt];
-                if (existDistache != nil) {
-                    if (existDistache.doubleValue < distance) {
-                        continue;
-                    }
-                    BMKCluster *existCluster = [itemToCluster objectForKey:[NSNumber numberWithLongLong:quadItem.hash]];
-                    [existCluster.clusterItems removeObject:quadItem.clusterItem];
-                }
-                [distanceToCluster setObject:[NSNumber numberWithDouble:distance] forKey:[NSNumber numberWithLongLong:quadItem.hash]];
-                [cluster.clusterItems addObject:quadItem.clusterItem];
-                [itemToCluster setObject:cluster forKey:[NSNumber numberWithLongLong:quadItem.hash]];
-            }
-            [visitedCandidates addObjectsFromArray:items];
+            //            CGRect searchRect = [self getRectWithPt:candidate.pt Span:zoomSpecificSpan];
+            //            NSMutableArray *items = (NSMutableArray*)[_quadtree searchInRect:searchRect];
+            //            if (items.count == 1) {
+            [cluster.clusterItems addObject:candidate.clusterItem];
             [results addObject:cluster];
+            [visitedCandidates addObject:candidate];
+            [distanceToCluster setObject:[NSNumber numberWithDouble:0] forKey:[NSNumber numberWithLongLong:candidate.hash]];
+            continue;
+            //            }
+            
+            //            for (BMKQuadItem *quadItem in items) {
+            //                NSNumber *existDistache = [distanceToCluster objectForKey:[NSNumber numberWithLongLong:quadItem.hash]];
+            //                CGFloat distance = [self getDistanceSquared:candidate.pt point:quadItem.pt];
+            //                if (existDistache != nil) {
+            //                    if (existDistache.doubleValue < distance) {
+            //                        continue;
+            //                    }
+            //                    BMKCluster *existCluster = [itemToCluster objectForKey:[NSNumber numberWithLongLong:quadItem.hash]];
+            //                    [existCluster.clusterItems removeObject:quadItem.clusterItem];
+            //                }
+            //                [distanceToCluster setObject:[NSNumber numberWithDouble:distance] forKey:[NSNumber numberWithLongLong:quadItem.hash]];
+            //                [cluster.clusterItems addObject:quadItem.clusterItem];
+            //                [itemToCluster setObject:cluster forKey:[NSNumber numberWithLongLong:quadItem.hash]];
+            //            }
+            //            [visitedCandidates addObjectsFromArray:items];
+            //            [results addObject:cluster];
         }
     }
     return results;
@@ -114,3 +114,4 @@
 }
 
 @end
+
