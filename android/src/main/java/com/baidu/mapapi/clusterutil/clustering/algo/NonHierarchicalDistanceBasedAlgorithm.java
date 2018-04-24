@@ -86,11 +86,17 @@ public class NonHierarchicalDistanceBasedAlgorithm<T extends ClusterItem> implem
      */
     @Override
     public Set<? extends Cluster<T>> getClusters(double zoom) {
+
+        Set<Cluster<T>> results;
+        synchronized (mQuadTree) {
+            results = new HashSet<Cluster<T>>(mItems);
+        }
+        return  results;
+        
+        /* XXX: 禁用 cluster 效果
         final int discreteZoom = (int) zoom;
 
-//        final double zoomSpecificSpan = MAX_DISTANCE_AT_ZOOM / Math.pow(2, discreteZoom) / 256;
-        // XXX: 将 cluster 边界范围设为 0，禁用 cluster 逻辑
-        final double zoomSpecificSpan = 0;
+        final double zoomSpecificSpan = MAX_DISTANCE_AT_ZOOM / Math.pow(2, discreteZoom) / 256;
 
         final Set<QuadItem<T>> visitedCandidates = new HashSet<QuadItem<T>>();
         final Set<Cluster<T>> results = new HashSet<Cluster<T>>();
@@ -140,6 +146,7 @@ public class NonHierarchicalDistanceBasedAlgorithm<T extends ClusterItem> implem
             }
         }
         return results;
+        */
     }
 
     @Override
