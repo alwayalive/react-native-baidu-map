@@ -74,43 +74,70 @@
 //    self.pinColor = BMKPinAnnotationColorPurple;
     NSString* iconImg = @"icon_qita.png";
     if( self.iconType == 1){
-        iconImg = @"icon_diaodian.png";
+        iconImg = @"haidao.png";
+    }
+    else if( self.iconType == 2 ){
+        iconImg = @"jingdian.png";
     }
     else if( self.iconType == 3 ){
-        iconImg = @"icon_luying.png";
+        iconImg = @"wanle.png";
     }
     else if( self.iconType == 4 ){
-        iconImg = @"icon_jingdian.png";
+        iconImg = @"matou.png";
+    }
+    else if( self.iconType == 5 ){
+        iconImg = @"shatan.png";
     }
     else if( self.iconType == 6 ){
-        iconImg = @"icon_cangting.png";
+        iconImg = @"zhusu.png";
     }
     else if( self.iconType == 7 ){
-        iconImg = @"icon_lvguan.png";
+        iconImg = @"meishi.png";
     }
     else if( self.iconType == 8 ){
-        iconImg = @"icon_chuangjia.png";
+        iconImg = @"luying.png";
+    }
+    else if( self.iconType == 9 ){
+        iconImg = @"dujiacun.png";
+    }
+    else if( self.iconType == 10 ){
+        iconImg = @"qianshuidian.png";
+    }
+    else if( self.iconType == 11 ){
+        iconImg = @"chuanjia.png";
+    }
+    else if( self.iconType == 12 ){
+        iconImg = @"yujudian.png";
     }
     else if( self.iconType == 13 ){
-        iconImg = @"icon_yujudian.png";
+        iconImg = @"diaodian.png";
     }
-    else if( self.iconType == 18 ){
-        iconImg = @"icon_qianshui.png";
+    else if( self.iconType == 14 ){
+        iconImg = @"qichezulin.png";
+    }
+    else if( self.iconType == 15 ){
+        iconImg = @"gouwu.png";
+    }
+    else if( self.iconType == 16 ){
+        iconImg = @"yiyuan.png";
+    }
+    else if( self.iconType == 17 ){
+        iconImg = @"paichusuo.png";
     }
     if (_size == 1) {
         self.label.hidden = YES;
         self.image = [UIImage imageNamed:iconImg];
     }else{
         self.label.hidden = NO;
-//    if (size > 20) {
-//        self.label.backgroundColor = [UIColor redColor];
-//    } else if (size > 10) {
-//        self.label.backgroundColor = [UIColor purpleColor];
-//    } else if (size > 5) {
-//        self.label.backgroundColor = [UIColor blueColor];
-//    } else {
-//        self.label.backgroundColor = [UIColor greenColor];
-//    }
+        //    if (size > 20) {
+        //        self.label.backgroundColor = [UIColor redColor];
+        //    } else if (size > 10) {
+        //        self.label.backgroundColor = [UIColor purpleColor];
+        //    } else if (size > 5) {
+        //        self.label.backgroundColor = [UIColor blueColor];
+        //    } else {
+        //        self.label.backgroundColor = [UIColor greenColor];
+        //    }
         _label.text = [NSString stringWithFormat:@"%ld", size];
     }
 }
