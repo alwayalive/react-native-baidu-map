@@ -620,58 +620,55 @@ public class BaiduMapViewManager extends ViewGroupManager<MapView> {
             int iconId = R.drawable.icon_gcoding;
             switch (iconType){
                 case 1:
-                    iconId = R.drawable.icon_diaodian;//钓点
+                    iconId = R.drawable.haidao;//钓点
                     break;
                 case 2:
-                    iconId = R.drawable.icon_qita;
+                    iconId = R.drawable.jingdian;
                     break;
                 case 3:
-                    iconId = R.drawable.icon_luying;//露营
+                    iconId = R.drawable.wanle;//露营
                     break;
                 case 4:
-                    iconId = R.drawable.icon_jingdian;//景点
+                    iconId = R.drawable.matou;//景点
                     break;
                 case 5:
-                    iconId = R.drawable.icon_qita;
+                    iconId = R.drawable.shatan;
                     break;
                 case 6:
-                    iconId = R.drawable.icon_qita;
+                    iconId = R.drawable.zhusu;
                     break;
                 case 7:
-                    iconId = R.drawable.icon_qita;
+                    iconId = R.drawable.meishi;
                     break;
                 case 8:
-                    iconId = R.drawable.icon_chuangjia;//船家
+                    iconId = R.drawable.luying;//露营
                     break;
                 case 9:
-                    iconId = R.drawable.icon_qita;
+                    iconId = R.drawable.dujiacun;
                     break;
                 case 10:
-                    iconId = R.drawable.icon_qita;
+                    iconId = R.drawable.qianshuidian;
                     break;
                 case 11:
-                    iconId = R.drawable.icon_qita;
+                    iconId = R.drawable.chuanjia;
                     break;
                 case 12:
-                    iconId = R.drawable.icon_qita;
+                    iconId = R.drawable.yujudian;
                     break;
                 case 13:
-                    iconId = R.drawable.icon_yujudian;//渔具店
+                    iconId = R.drawable.diaodian;//渔具店
                     break;
                 case 14:
-                    iconId = R.drawable.icon_qita;
+                    iconId = R.drawable.qichezulin;
                     break;
                 case 15:
-                    iconId = R.drawable.icon_qita;
+                    iconId = R.drawable.gouwu;
                     break;
                 case 16:
-                    iconId = R.drawable.icon_qita;
+                    iconId = R.drawable.yiyuan;
                     break;
                 case 17:
-                    iconId = R.drawable.icon_qita;
-                    break;
-                case 18:
-                    iconId = R.drawable.icon_qianshui;//潜水
+                    iconId = R.drawable.paichusuo;
                     break;
                 default:
                     iconId = R.drawable.icon_qita;
